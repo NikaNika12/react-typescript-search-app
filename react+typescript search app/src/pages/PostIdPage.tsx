@@ -29,7 +29,7 @@ const PostIdPage = () => {
 
   return (
     <div>
-      <h1>Post page with ID = {params.id}</h1>
+      <h1>Post page</h1>
       {isLoading ? (
         <Loader />
       ) : (

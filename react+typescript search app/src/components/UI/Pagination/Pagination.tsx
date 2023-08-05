@@ -9,6 +9,7 @@ interface paginationProps {
 
 const Pagination = ({ totalPages, page, changePage }: paginationProps) => {
   const pagesArray = getPagesArray(totalPages);
+
   return (
     <div className="page__wrapper">
       {pagesArray.map((p) => (

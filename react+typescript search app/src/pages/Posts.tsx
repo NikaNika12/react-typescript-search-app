@@ -10,7 +10,6 @@ import PostFilter from "../components/PostFilter";
 import PostList from "../components/PostList";
 import Loader from "../components/UI/Loader/Loader";
 import Pagination from "../components/UI/Pagination/Pagination";
-import { useObserver } from "../hooks/useObserver";
 import MySelect from "../components/UI/Select/MySelect";
 
 export interface IPosts {
@@ -28,22 +27,16 @@ function Posts() {
   const [page, setPage] = useState<number>(1);
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
 
-  const lastElement = useRef<any>();
-
   const [fetchPosts, isPostsLoading, postError] = useFetching(
     async (limit: string, page: string) => {
       const response = await PostService.getAll(limit, page);
-      setPosts([...posts, ...response]);
-      setTotalPages(getPageCount(response.length, +limit));
+      setPosts(response);
+      setTotalPages(getPageCount(+limit));
     }
   );
 
-  useObserver(lastElement, page < totalPages, isPostsLoading, () => {
-    setPage(page + 1);
-  });
-
   useEffect(() => {
-      fetchPosts(limit, page);
+    fetchPosts(limit, page);
   }, [page, limit]);
 
   const createPost = (newPost: IPosts) => {
@@ -84,7 +77,7 @@ function Posts() {
         posts={sortedAndSearchedPosts}
         title="Posts"
       />
-      <div ref={lastElement} />
+      <div/>
       {isPostsLoading && (
         <div
           style={{ display: "flex", justifyContent: "center", marginTop: 50 }}

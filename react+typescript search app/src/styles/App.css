@@ -32,10 +32,10 @@ h2 {
     margin: 0 0 30px 0;
 }
 
-span{
+span {
     display: block;
     margin-bottom: 30px;
-    font-size: 28px;
+    font-size: 14px;
     letter-spacing: 1px;
 }
 
@@ -55,11 +55,6 @@ span{
     background-color: gainsboro;
 }
 
-.post__btns {
-    display: flex;
-    gap: 5px;
-}
-
 .post-enter {
     transform: translateX(-350px);
 }
@@ -75,9 +70,15 @@ span{
     transition: all 500ms ease-in;
 }
 
+.post__btns {
+    display: flex;
+    gap: 5px;
+}
+
 .page__wrapper {
     margin-top: 30px;
     display: flex;
+    gap: 2px;
 }
 
 .page {
