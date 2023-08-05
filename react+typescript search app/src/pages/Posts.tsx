@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import PostService from "../API/PostService";
 import { usePosts } from "../hooks/usePosts";
 import { useFetching } from "../hooks/useFetching";
-import { getPageCount } from "../utils/pages";
+import { getPageCount, getPagesArray } from "../utils/pages";
 import MyButton from "../components/UI/Button/MyButton";
 import PostForm from "../components/PostForm";
 import MyModal from "../components/UI/MyModal/MyModal";
@@ -31,13 +31,10 @@ function Posts() {
   const lastElement = useRef<any>();
 
   const [fetchPosts, isPostsLoading, postError] = useFetching(
-    async (limit: number, page: number) => {
-      const response = await PostService.getAll(
-        limit ? limit.toString() : undefined,
-        page ? page.toString() : undefined
-      );
+    async (limit: string, page: string) => {
+      const response = await PostService.getAll(limit, page);
       setPosts([...posts, ...response]);
-      setTotalPages(getPageCount(response.length, limit));
+      setTotalPages(getPageCount(response.length, +limit));
     }
   );
 
@@ -47,21 +44,19 @@ function Posts() {
 
   useEffect(() => {
       fetchPosts(limit, page);
-  }, [limit, page]);
+  }, [page, limit]);
 
   const createPost = (newPost: IPosts) => {
     setPosts([...posts, newPost]);
     setModal(false);
   };
 
-  // Получаем post из дочернего компонента
   const removePost = (post: { id: number }) => {
     setPosts(posts.filter((p) => p.id !== post.id));
   };
 
   const changePage = (page: React.SetStateAction<number>) => {
     setPage(page);
-    fetchPosts(limit);
   };
 
   return (
@@ -75,7 +70,7 @@ function Posts() {
       <MySelect
         value={limit}
         onChange={(value) => setLimit(+value)}
-        defaultValue="Posts amount on page"
+        defaultValue="Posts by page"
         options={[
           { value: 5, name: "5" },
           { value: 10, name: "10" },
@@ -87,7 +82,7 @@ function Posts() {
       <PostList
         remove={removePost}
         posts={sortedAndSearchedPosts}
-        title="Posts example"
+        title="Posts"
       />
       <div ref={lastElement} />
       {isPostsLoading && (
@@ -97,7 +92,11 @@ function Posts() {
           <Loader />
         </div>
       )}
-      <Pagination page={page} changePage={changePage} totalPages={totalPages} />
+      <Pagination 
+        page={page} 
+        changePage={changePage} 
+        totalPages={totalPages} 
+      />
     </div>
   );
 }

@@ -6,7 +6,6 @@ import { IFilter } from "../types/types";
 const PostFilter = ({ filter, setFilter }: IFilter) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilter({ ...filter, query: event.target.value });
-    console.log({ ...filter, query: event.target.value });
   };
 
   return (

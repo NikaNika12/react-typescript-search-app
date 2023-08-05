@@ -1,0 +1,9 @@
+.mySel {
+    width: 20%;
+    padding: 5px 15px;
+    margin: 5px 0;
+    border: 1px solid teal;
+    color: teal;
+    font-size: 14px;
+    cursor: pointer;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './MySelect.module.css';
 import { string } from "yargs";
 
 interface selectProps {
@@ -10,8 +11,15 @@ interface selectProps {
 
 const MySelect = ({ options, defaultValue, value, onChange }: selectProps) => {
   return (
-    <select value={value} onChange={(event) => onChange(event.target.value)}>
-      <option disabled value="">
+    <select 
+      value={value} 
+      onChange={(event) => onChange(event.target.value)}
+      className={styles.mySel}
+    >
+      <option 
+        disabled 
+        value=""
+      >
         {defaultValue}
       </option>
       {options.map(
@@ -27,7 +35,10 @@ const MySelect = ({ options, defaultValue, value, onChange }: selectProps) => {
             | null
             | undefined;
         }) => (
-          <option key={option.value} value={option.value}>
+          <option 
+            key={option.value} 
+            value={option.value} 
+          >
             {option.name}
           </option>
         )

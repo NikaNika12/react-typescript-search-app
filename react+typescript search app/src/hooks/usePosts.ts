@@ -1,6 +1,7 @@
 import { useMemo } from "react";
+import { IPosts } from "../types/types";
 
-export const useSortedPosts = (posts: any, sort: any) => {
+export const useSortedPosts = (posts: any, sort: string) => {
   const sortedPosts = useMemo(() => {
     if (sort) {
       return [...posts].sort((a, b) => a[sort].localeCompare(b[sort]));
@@ -11,7 +12,7 @@ export const useSortedPosts = (posts: any, sort: any) => {
   return sortedPosts;
 };
 
-export const usePosts = (posts: any, sort: string, query: string) => {
+export const usePosts = (posts: IPosts[], sort: string, query: string) => {
   const sortedPosts = useSortedPosts(posts, sort);
 
   const sortedAndSearchedPosts = useMemo(

@@ -52,10 +52,12 @@ span{
     margin-top: 15px;
     justify-content: space-between;
     align-items: center;
+    background-color: gainsboro;
 }
 
 .post__btns {
     display: flex;
+    gap: 5px;
 }
 
 .post-enter {
@@ -85,7 +87,8 @@ span{
 }
 
 .page__current {
-    border: 2px solid orange;
+    color: white;
+    background-color: teal;
     font-weight: bold;
 }
 

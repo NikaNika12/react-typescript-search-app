@@ -1,9 +1,10 @@
 import React from "react";
 import { IPosts } from "../pages/Posts";
 import PostItem from "./PostItem";
+import { CSSTransition, TransitionGroup, } from 'react-transition-group';
 
 interface ListProps {
-  posts: any;
+  posts: IPosts[];
   title: string;
   remove: any;
 }
@@ -16,13 +17,22 @@ const PostList = ({ posts, title, remove }: ListProps) => {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>{title}</h1>
-      <div>
-        {posts.map((post: any, index: number) => (
-          <div key={post.id} className="post">
-            <PostItem remove={remove} number={index + 1} post={post} id={0} />
-          </div>
+      <TransitionGroup>
+        {posts.map((post: IPosts, index: number) => (
+          <CSSTransition
+            key={post.id}
+            timeout={500}
+            className="post"
+          >
+            <PostItem 
+              remove={remove} 
+              number={index + 1} 
+              post={post} 
+              id={0} 
+            />
+          </CSSTransition>
         ))}
-      </div>
+      </TransitionGroup>
     </div>
   );
 };

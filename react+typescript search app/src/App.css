@@ -33,14 +33,14 @@ h2 {
   margin: 0 0 30px 0;
 }
 
-span{
+span {
   display: block;
   margin-bottom: 30px;
-  font-size: 28px;
+  font-size: 14px;
   letter-spacing: 1px;
 }
 
-.desk{
+.desk {
   width: 100%;
   margin-top: 10%;
   color: rgba(51, 204, 204);
@@ -72,13 +72,14 @@ span{
   display: flex;
   padding: 15px;
   border: 2px solid teal;
-  margin-top: 15px;
+  margin-top: 5px;
   justify-content: space-between;
   align-items: center;
 }
 
 .post__btns {
   display: flex;
+  gap: 5px;
 }
 
 .post-enter {
@@ -102,13 +103,14 @@ span{
 }
 
 .page {
-  padding: 10px;
+  padding: 5px;
   border: 1px solid teal;
   cursor: pointer;
 }
 
 .page__current {
-  border: 2px solid orange;
+  background-color: teal;
+  color: white;
   font-weight: bold;
 }
 
