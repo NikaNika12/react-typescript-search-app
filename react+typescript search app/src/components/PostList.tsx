@@ -7,13 +7,14 @@ interface ListProps {
   posts: IPosts[];
   title: string;
   remove: any;
+  page: number;
+  limit: number;
 }
 
-const PostList = ({ posts, title, remove }: ListProps) => {
+const PostList = ({ posts, title, remove, page, limit }: ListProps) => {
   if (!posts.length) {
     return <h1 style={{ textAlign: "center" }}>Posts are not found!</h1>;
   }
-
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>{title}</h1>
@@ -26,7 +27,7 @@ const PostList = ({ posts, title, remove }: ListProps) => {
           >
             <PostItem 
               remove={remove} 
-              number={index + 1} 
+              number={index + 1 + (page * limit - limit)} 
               post={post} 
               id={0} 
             />

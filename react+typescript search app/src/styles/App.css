@@ -55,18 +55,21 @@ span {
     background-color: gainsboro;
 }
 
-.post-enter {
-    transform: translateX(-350px);
+.enter {
+    transform: translateX(-2000px);
 }
-.post-enter-active {
+
+.enter-active {
     transform: translateX(0px);
     transition: all 500ms ease-in;
 }
-.post-exit {
+
+.exit {
     opacity: 1;
 }
-.post-exit-active {
-    transform: translateX(-350px);
+
+.exit-active {
+    transform: translateX(-2000px);
     transition: all 500ms ease-in;
 }
 

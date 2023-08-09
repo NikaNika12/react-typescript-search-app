@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PostService from "../API/PostService";
 import { usePosts } from "../hooks/usePosts";
 import { useFetching } from "../hooks/useFetching";
@@ -76,6 +76,8 @@ function Posts() {
         remove={removePost}
         posts={sortedAndSearchedPosts}
         title="Posts"
+        page={page}
+        limit={limit}
       />
       <div/>
       {isPostsLoading && (
